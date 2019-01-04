@@ -8,7 +8,7 @@ library(pgirmess) #more statistics
 library(vegan)  #sampling accumulation curves
 #library(plotly)  #interactive plots (handy to check individual data points)
 
-setwd("C:/Users/Jule/Documents/Uni/MA/PublicationTortoises/RScript")
+setwd("C:/Users/Jule/Documents/Uni/MA/PublicationTortoises")#/RScript
 tidyCL<-read.csv("tortoises_tidy_pub.csv", sep=";", header=TRUE)   #new table with 14 new data points from miocene (date: 19.07.18)
 # C:\Users\Jule\Documents\Uni\MA\PublicationTortoises
 
