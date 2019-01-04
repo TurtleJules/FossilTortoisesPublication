@@ -1,0 +1,23 @@
+
+ou <- opt.GRW(paleo_data, pool = TRUE, cl = list(fnscale = -1), meth = "L-BFGS-B", hess = FALSE)
+bm <- opt.URW(paleo_data, pool = TRUE, cl = list(fnscale=-1), meth = "L-BFGS-B", hess = FALSE)
+st <- opt.Stasis(paleo_data, pool = TRUE, cl = list(fnscale=-1), meth = "L-BFGS-B", hess = FALSE)
+pun <- fitGpunc(paleo_data,oshare=F,method= "AD" , pool=F)
+
+compareModels(bm, ou,st,pun, silent = FALSE)
+
+library(MuMIn)
+aic.w <- Weights(c(st$AICc,pun$AICc))
+cbind(c("stasis", "shift"), aic.w)
+aic.w[2]/aic.w[1]
+shift.time <- paleo_data$tt[pun$parameters[5]]
+
+
+
+par(mfrow=c(2,2))
+plot(paleo_data, modelFit= bm, pch=19, lwd=1.5, ylim=NULL, las=1)
+plot(paleo_data, modelFit= ou, pch=19, lwd=1.5, ylim=NULL, las=1)
+plot(paleo_data, modelFit= st, pch=19, lwd=1.5, ylim=NULL, las=1)
+plot(paleo_data, modelFit=pun, pch=19, lwd=1.5, ylim=NULL, las=1)
+
+
